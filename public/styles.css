@@ -48,7 +48,7 @@ button:hover {
     text-align: center; /* Centraliza o texto */
     padding: 50px; /* Um pouco de espaço ao redor */
     position: absolute; /* Permite o posicionamento absoluto */
-    top: 48%; /* Move o contêiner para 50% da altura da tela */
+    top: 65%; /* Move o contêiner para 50% da altura da tela */
     left: 40%; /* Move o contêiner para 50% da largura da tela */
     transform: translate(-50%, -50%); /* Centraliza o contêiner */
 }
