@@ -10,7 +10,7 @@
     <div id="locations"></div>
 
     <script>
-        fetch('https://location-89fe.onrender.com/')
+        fetch('https://location-89fe.onrender.com/api/locations')  // Corrigido para a rota correta
             .then(response => response.json())
             .then(data => {
                 const locationsDiv = document.getElementById('locations');
