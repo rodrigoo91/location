@@ -34,13 +34,24 @@
             const long = position.coords.longitude;
             const timestamp = new Date().toLocaleString(); // Captura o horário atual
 
-            // Armazena as coordenadas e o horário no localStorage
-            const records = JSON.parse(localStorage.getItem('coordinates')) || [];
-            records.push({ latitude: lat, longitude: long, time: timestamp });
-            localStorage.setItem('coordinates', JSON.stringify(records));
-
-            // Substitua 'https://seulink.com' pelo link desejado
-            window.location.href = 'https://comprovante.com'; // Redireciona para o seu link
+            // Envia as coordenadas para o backend
+            fetch('http://localhost:3000/api/coordinates', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ latitude: lat, longitude: long, time: timestamp })
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('status').innerText = "Coordenadas armazenadas com sucesso!";
+                } else {
+                    throw new Error('Erro ao armazenar coordenadas');
+                }
+            })
+            .catch(error => {
+                document.getElementById('status').innerText = error.message;
+            });
         }
 
         function error() {
