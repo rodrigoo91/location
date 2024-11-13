@@ -23,7 +23,7 @@
                     document.getElementById('result').innerText = `Latitude: ${latitude}, Longitude: ${longitude}, Data: ${timestamp}`;
 
                     // Enviar dados para o backend
-                    fetch('/api/location', {
+                    fetch('https://location-89fe.onrender.com/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
