@@ -51,3 +51,15 @@ header {
 #clearData:hover {
     background-color: #c82333;
 }
+
+.error-message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente */
+    color: rgb(0, 0, 0); /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+    position: absolute; /* Permite o posicionamento absoluto */
+    top: 50%; /* Move o contêiner para 50% da altura da tela */
+    left: 55%; /* Move o contêiner para 50% da largura da tela */
+    transform: translate(-50%, -50%); /* Centraliza o contêiner */
+}
