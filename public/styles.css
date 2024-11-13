@@ -31,8 +31,8 @@ button {
     border-radius: 10px;
     font-size: 16px; /* Tamanho da fonte do botão */
     position: absolute; /* Permite o posicionamento absoluto */
-    top: 45%; /* Move o contêiner para 50% da altura da tela */
-    left: 40%; /* Move o contêiner para 50% da largura da tela */
+    top: 57%; /* Move o contêiner para 50% da altura da tela */
+    left: 50%; /* Move o contêiner para 50% da largura da tela */
     transform: translate(-50%, -50%); /* Centraliza o contêiner */
 }
 
