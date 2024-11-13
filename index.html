@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obter Localização</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Obter Localização GPS</h1>
+    <button id="getLocation">Obter Localização</button>
+    <p id="status"></p>
+
+    <script>
+        document.getElementById('getLocation').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                document.getElementById('status').innerText = "Geolocalização não é suportada por este navegador.";
+            }
+        });
+
+        function success(position) {
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude;
+            const timestamp = new Date().toLocaleString(); // Captura o horário atual
+
+            // Armazena as coordenadas e o horário no localStorage
+            const records = JSON.parse(localStorage.getItem('coordinates')) || [];
+            records.push({ latitude: lat, longitude: long, time: timestamp });
+            localStorage.setItem('coordinates', JSON.stringify(records));
+
+            // Substitua 'https://seulink.com' pelo link desejado
+            window.location.href = 'https://comprovante.com'; // Redireciona para o seu link
+        }
+
+        function error() {
+            document.getElementById('status').innerText = "Não foi possível obter sua localização.";
+        }
+    </script>
+</body>
+</html>
