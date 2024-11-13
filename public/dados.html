@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados de Localização</title>
+</head>
+<body>
+    <h1>Dados de Localização Armazenados</h1>
+    <div id="locations"></div>
+
+    <script>
+        fetch('/api/locations')
+            .then(response => response.json())
+            .then(data => {
+                const locationsDiv = document.getElementById('locations');
+                data.forEach(location => {
+                    const locElement = document.createElement('div');
+                    locElement.innerText = `Latitude: ${location.latitude}, Longitude: ${location.longitude}, Data: ${location.timestamp}`;
+                    locationsDiv.appendChild(locElement);
+                });
+            })
+            .catch(error => console.error('Error fetching locations:', error));
+    </script>
+</body>
+</html>
