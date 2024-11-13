@@ -38,25 +38,38 @@
     <button onclick="goBack()">Voltar</button>
 
     <script>
-        // Recupera as coordenadas do localStorage
-        const records = JSON.parse(localStorage.getItem('coordinates')) || [];
-        const coordinatesTable = document.getElementById('coordinates');
-        
-        if (records.length > 0) {
-            records.forEach(record => {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${record.time}</td><td>${record.latitude}</td><td>${record.longitude}</td>`;
-                coordinatesTable.appendChild(row);
+        // Recupera as coordenadas do backend
+        fetch('http://localhost:3000/api/coordinates')
+            .then(response => response.json())
+            .then(data => {
+                const coordinatesTable = document.getElementById('coordinates');
+                if (data.length > 0) {
+                    data.forEach(record => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `<td>${record.time}</td><td>${record.latitude}</td><td>${record.longitude}</td>`;
+                        coordinatesTable.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement('tr');
+                    row.innerHTML = "<td colspan='3'>Nenhum dado encontrado.</td>";
+                    coordinatesTable.appendChild(row);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao carregar dados:', error);
             });
-        } else {
-            const row = document.createElement('tr');
-            row.innerHTML = "<td colspan='3'>Nenhum dado encontrado.</td>";
-            coordinatesTable.appendChild(row);
-        }
 
         function clearData() {
-            localStorage.removeItem('coordinates');
-            location.reload(); // Recarrega a página para atualizar os dados
+            // Limpa os dados no backend
+            fetch('http://localhost:3000/api/coordinates', {
+                method: 'DELETE'
+            })
+            .then(() => {
+                location.reload(); // Recarrega a página para atualizar os dados
+            })
+            .catch(error => {
+                console.error('Erro ao limpar dados:', error);
+            });
         }
 
         function goBack() {
