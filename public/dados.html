@@ -10,7 +10,7 @@
     <div id="locations"></div>
 
     <script>
-        fetch('/api/locations')
+        fetch('https://location-89fe.onrender.com/')
             .then(response => response.json())
             .then(data => {
                 const locationsDiv = document.getElementById('locations');
