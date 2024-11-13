@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Localização</title>
+</head>
+<body>
+    <h1>Permissão de Localização</h1>
+    <button id="getLocation">Obter Localização</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('getLocation').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const date = new Date();
+                    const timestamp = date.toISOString();
+
+                    // Exibir no navegador
+                    document.getElementById('result').innerText = `Latitude: ${latitude}, Longitude: ${longitude}, Data: ${timestamp}`;
+
+                    // Enviar dados para o backend
+                    fetch('/api/location', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            latitude: latitude,
+                            longitude: longitude,
+                            timestamp: timestamp
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log('Success:', data))
+                    .catch((error) => console.error('Error:', error));
+                }, function() {
+                    alert('Erro ao obter localização.');
+                });
+            } else {
+                alert('Geolocalização não é suportada neste navegador.');
+            }
+        });
+    </script>
+</body>
+</html>
