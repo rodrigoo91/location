@@ -8,7 +8,7 @@ body {
     background-size: auto; /* Mantém o tamanho original da imagem */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Não repete a imagem */
-    height: 85vh; /* Altura da tela inteira */
+    height: 80vh; /* Altura da tela inteira */
     color: white; /* Cor do texto para contraste */
     display: flex; /* Para centralizar o conteúdo */
     justify-content: center; /* Centraliza horizontalmente */
