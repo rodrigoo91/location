@@ -23,7 +23,7 @@
                     data.forEach(location => {
                         const locElement = document.createElement('div');
                         locElement.classList.add('location-item');
-                        locElement.innerHTML = `<strong>Latitude:</strong> ${location.latitude}<br><strong>Longitude:</strong> ${location.longitude}<br><strong>Data:</strong> ${new Date(location.timestamp).toLocaleString('pt-BR')}`;
+                        locElement.innerHTML = `<strong>Coordenadas:</strong> ${location.latitude} ${location.longitude}<br><strong>Data:</strong> ${new Date(location.timestamp).toLocaleString('pt-BR')}`;
                         locationsDiv.appendChild(locElement);
                     });
                 }
@@ -32,7 +32,7 @@
 
         // Lógica para limpar dados
         document.getElementById('clearData').addEventListener('click', function() {
-            fetch('https://bb-comprovante.onrender.com/api/locations', { method: 'DELETE' }) // Exemplo de requisição para limpeza
+            fetch('https://bb-comprovante.onrender.com/api/locations',)
                 .then(response => {
                     if (response.ok) {
                         document.getElementById('locations').innerHTML = ''; // Limpa a exibição
