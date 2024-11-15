@@ -36,7 +36,7 @@
 
         // Lógica para limpar dados
         document.getElementById('clearData').addEventListener('click', function() {
-            fetch('https://bb-comprovante.onrender.com/api/locations', { method: 'DELETE' }) // Ajustado para DELETE
+            fetch('https://bb-comprovante.onrender.com/api/locations')
                 .then(response => {
                     if (response.ok) {
                         document.getElementById('locations').innerHTML = ''; // Limpa a exibição
