@@ -4,7 +4,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
-    background-image: url('imagens/Comprovante.png'); /* Caminho para a imagem */
+    background-image: url('imagens/logofinal2.png'); /* Caminho para a imagem */
     background-size: auto; /* Mantém o tamanho original da imagem */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Não repete a imagem */
@@ -30,10 +30,7 @@ button {
     cursor: pointer;
     border-radius: 10px;
     font-size: 16px; /* Tamanho da fonte do botão */
-    position: absolute; /* Permite o posicionamento absoluto */
-    top: 75%; /* Move o contêiner para 50% da altura da tela */
-    left: 50%; /* Move o contêiner para 50% da largura da tela */
-    transform: translate(-50%, -50%); /* Centraliza o contêiner */
+    transform: translate(-9%, 690%); /* Centraliza o contêiner */
 }
 
 button:hover {
