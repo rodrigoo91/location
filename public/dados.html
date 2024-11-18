@@ -35,18 +35,22 @@
             .catch(error => console.error('Error fetching locations:', error));
 
         // Lógica para limpar dados
-        document.getElementById('clearData').addEventListener('click', function() {
-            fetch('https://bb-comprovante.onrender.com/api/locations', { method: 'DELETE' }) // Ajustado para DELETE
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById('locations').innerHTML = ''; // Limpa a exibição
-                        alert('Dados limpos com sucesso!'); // Mensagem de sucesso
-                    } else {
-                        alert('Erro ao limpar os dados.'); // Mensagem de erro
-                    }
-                })
-                .catch(error => console.error('Error clearing locations:', error));
-        });
+document.getElementById('clearData').addEventListener('click', function() {
+    fetch('https://bb-comprovante.onrender.com/api/locations', { method: 'DELETE' })
+        .then(response => {
+            console.log('Response status:', response.status); // Log do status da resposta
+            return response.json(); // Tente retornar o JSON para ver a mensagem de erro
+        })
+        .then(data => {
+            if (data.success) { // Verifique se a resposta contém um campo de sucesso
+                document.getElementById('locations').innerHTML = ''; // Limpa a exibição
+                alert('Dados limpos com sucesso!'); // Mensagem de sucesso
+            } else {
+                alert('Erro ao limpar os dados: ' + data.message); // Mensagem de erro
+            }
+        })
+        .catch(error => console.error('Error clearing locations:', error));
+});
     </script>
 </body>
 </html>
