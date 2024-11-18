@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json()); // Para analisar requisições JSON
 
 // Servir arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
@@ -42,6 +43,14 @@ app.get('/api/locations', (req, res) => {
         if (err) return res.status(500).json({ error: 'Erro ao ler dados.' });
         res.json(JSON.parse(data || '[]'));
     });
+});
+
+// rota para lidar com DELETE
+app.delete('/api/locations', (req, res) => {
+    // Lógica para remover os dados armazenados
+    // Suponha que você tenha um array ou um banco de dados
+    locations = []; // Limpa a lista de localizações
+    res.json({ success: true, message: 'Dados limpos com sucesso!' });
 });
 
 // Iniciar o servidor
